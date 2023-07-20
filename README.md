@@ -6,7 +6,12 @@ Okmeta is the core plugin for YesNoBruhBruh (maanraj514).
 
 ## Features
 
-- Add features here
+- ColorUtil.java
+- CoolDownUtil.java
+- FileUtil.java
+- MessageUtil.java
+- NumberUtil.java
+- TimeUtil.java
 
 ## Installation
 
