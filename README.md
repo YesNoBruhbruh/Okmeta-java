@@ -1,8 +1,5 @@
-this is going to be the core plugin for YesNoBruhbruh (maanraj514)!
-
 # Okmeta
-
-Okmeta is the core plugin for YesNoBruhBruh (maanraj514).
+this is going to be the core plugin for YesNoBruhbruh (maanraj514)!
 
 ## Features
 
