@@ -3,13 +3,14 @@ package com.maanraj514.utils;
 import com.google.common.io.ByteStreams;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.util.logging.Logger;
 
 /**
- * this class handles the files, load, copy etc.
+ * This class handles the files, load, copy etc.
  */
 public class FileUtil {
 
@@ -19,13 +20,14 @@ public class FileUtil {
     private final Logger logger = Bukkit.getLogger();
 
     /**
-     * loads the file specified.
-     * returns the file loaded.
+     * Loads the file specified.
+     * Returns the file loaded.
+     *
      * @param plugin the main plugin instance
      * @param resource the file to be loaded
      * @return the file loaded
      */
-    public File loadFile(JavaPlugin plugin, String resource) {
+    public File loadFile(@NotNull JavaPlugin plugin, @NotNull String resource) {
         File folder = plugin.getDataFolder();
         if (!folder.exists())
             if (!folder.mkdir()){
@@ -39,7 +41,9 @@ public class FileUtil {
                 }
                 try (InputStream in = plugin.getResource(resource);
                      OutputStream out = Files.newOutputStream(resourceFile.toPath())) {
-                    ByteStreams.copy(in, out);
+                    if (in != null){
+                        ByteStreams.copy(in, out);
+                    }
                 }
             }
         } catch (Exception e) {
@@ -49,11 +53,12 @@ public class FileUtil {
     }
 
     /**
-     * copies the source and pastes it in the destination.
+     * Copies the source and pastes it in the destination.
+     *
      * @param source the file to be copied
      * @param destination the destination the file will be pasted in
      */
-    public void copy(File source, File destination) throws IOException {
+    public void copy(@NotNull File source, @NotNull File destination) throws IOException {
         if (source.isDirectory()) {
             if (!destination.exists()) {
                 if (!destination.mkdir()){
@@ -84,10 +89,11 @@ public class FileUtil {
     }
 
     /**
-     * deletes the file specified.
+     * Deletes the file specified.
+     *
      * @param file the file to be deleted
      */
-    public void delete(File file) {
+    public void delete(@NotNull File file) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
             if (files == null) return;

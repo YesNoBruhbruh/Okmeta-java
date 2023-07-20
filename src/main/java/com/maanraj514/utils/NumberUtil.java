@@ -1,5 +1,8 @@
 package com.maanraj514.utils;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.text.DecimalFormat;
 
 /**
@@ -67,11 +70,11 @@ public class NumberUtil {
     }
 
     /**
-     * This method will check if the provided text is an int
+     * This method will check if the provided text is a {@link Integer}.
      * @param text Text to check
-     * @return If the text is an int
+     * @return If the text is a {@link Integer}
      */
-    public static boolean isInteger(String text) {
+    public static boolean isInteger(@NotNull String text) {
         try {
             Integer.parseInt(text);
             return true;
@@ -81,24 +84,24 @@ public class NumberUtil {
     }
 
     /**
-     * This method will get an int from the provided text.
-     * @param text Text to get the int from
-     * @return int from the text
-     * @throws NullPointerException If the text is not an int
+     * This method will get an {@link Integer} from the provided text.
+     * @param text Text to get the {@link Integer} from
+     * @return {@link Integer} from the text
+     * @throws NullPointerException If the text is not an {@link Integer}
      */
-
-    public static Integer getInteger(String text) {
+    @Nullable
+    public static Integer getInteger(@NotNull String text) {
         if (!isInteger(text)) return null;
 
         return Integer.parseInt(text);
     }
 
     /**
-     * This method will check if the provided text is a long
+     * This method will check if the provided text is a {@link Long}.
      * @param text Text to check
-     * @return If the text is a long
+     * @return If the text is a {@link Long}
      */
-    public static boolean isLong(String text) {
+    public static boolean isLong(@NotNull String text) {
         try {
             Long.parseLong(text);
             return true;
@@ -108,23 +111,24 @@ public class NumberUtil {
     }
 
     /**
-     * This method will get a long from the provided text.
-     * @param text Text to get the long from
-     * @return long from the text
-     * @throws NullPointerException If the text is not a long
+     * This method will get an {@link Long} from the provided text.
+     * @param text Text to get the {@link Long} from
+     * @return {@link Long} from the text
+     * @throws NullPointerException If the text is not an {@link Long}
      */
-    public static Long getLong(String text) {
+    @Nullable
+    public static Long getLong(@NotNull String text) {
         if (!isLong(text)) return null;
 
         return Long.parseLong(text);
     }
 
     /**
-     * This method will check if the provided text is a double.
+     * This method will check if the provided text is a {@link Double}.
      * @param text Text to check
-     * @return If the text is a double
+     * @return If the text is a {@link Double}
      */
-    public static boolean isDouble(String text) {
+    public static boolean isDouble(@NotNull String text) {
         try {
             Double.parseDouble(text);
             return true;
@@ -134,23 +138,24 @@ public class NumberUtil {
     }
 
     /**
-     * This method will get a double from the provided text.
-     * @param text Text to get the double from
-     * @return double from the text
-     * @throws NullPointerException If the text is not a double
+     * This method will get an {@link Double} from the provided text.
+     * @param text Text to get the {@link Double} from
+     * @return {@link Double} from the text
+     * @throws NullPointerException If the text is not an {@link Double}
      */
-    public static Double getDouble(String text) {
+    @Nullable
+    public static Double getDouble(@NotNull String text) {
         if (!isDouble(text)) return null;
 
         return Double.parseDouble(text);
     }
 
     /**
-     * This method will check if the provided text is a float.
+     * This method will check if the provided text is a {@link Float}.
      * @param text Text to check
-     * @return If the text is a float
+     * @return If the text is a {@link Float}
      */
-    public static boolean isFloat(String text) {
+    public static boolean isFloat(@NotNull String text) {
         try {
             Float.parseFloat(text);
             return true;
@@ -160,23 +165,24 @@ public class NumberUtil {
     }
 
     /**
-     * This method will get a float from the provided text.
-     * @param text Text to get the float from
-     * @return float from the text
-     * @throws NullPointerException If the text is not a float
+     * This method will get an {@link Float} from the provided text.
+     * @param text Text to get the {@link Float} from
+     * @return {@link Float} from the text
+     * @throws NullPointerException If the text is not an {@link Float}
      */
-    public static Float getFloat(String text) {
+    @Nullable
+    public static Float getFloat(@NotNull String text) {
         if (!isFloat(text)) return null;
 
         return Float.parseFloat(text);
     }
 
     /**
-     * This method will check if the provided text is a short.
+     * This method will check if the provided text is a {@link Short}.
      * @param text Text to check
-     * @return If the text is a short
+     * @return If the text is a {@link Short}
      */
-    public static boolean isShort(String text) {
+    public static boolean isShort(@NotNull String text) {
         try {
             Short.parseShort(text);
             return true;
@@ -186,12 +192,13 @@ public class NumberUtil {
     }
 
     /**
-     * This method will get a short from the provided text.
-     * @param text Text to get the short from
-     * @return short from the text
-     * @throws NullPointerException If the text is not a short
+     * This method will get an {@link Short} from the provided text.
+     * @param text Text to get the {@link Short} from
+     * @return {@link Short} from the text
+     * @throws NullPointerException If the text is not an {@link Short}
      */
-    public static Short getShort(String text) {
+    @Nullable
+    public static Short getShort(@NotNull String text) {
         if (!isShort(text)) return null;
 
         return Short.parseShort(text);
