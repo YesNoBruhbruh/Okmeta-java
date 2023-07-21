@@ -2,6 +2,7 @@ package com.maanraj514.utils;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,6 +41,29 @@ public class MessageUtil {
     public static void sendActionbar(@NotNull String message, @NotNull Player... players){
         for (Player player : players){
             player.sendActionBar(Component.text(message));
+        }
+    }
+
+    /**
+     * Broadcast a message to
+     * the entire server.
+     *
+     * @param message the message broadcasted.
+     */
+    public static void broadcast(@NotNull String message){
+        Bukkit.broadcastMessage(ColorUtil.translate(message));
+    }
+
+    /**
+     * Broadcast a message to
+     * multiple players.
+     *
+     * @param message the message broadcasted to the players.
+     * @param players the players who receive the broadcast.
+     */
+    public static void broadcast(@NotNull String message, @NotNull Player... players){
+        for (Player player : players){
+            player.sendMessage(ColorUtil.translate(message));
         }
     }
 }

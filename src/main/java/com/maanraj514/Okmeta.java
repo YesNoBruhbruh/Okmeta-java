@@ -1,18 +1,55 @@
 package com.maanraj514;
 
-import com.maanraj514.object.Message;
+import com.maanraj514.menu.MenuListener;
+import com.maanraj514.menu.PlayerMenuUtility;
+import com.maanraj514.utils.ColorUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
-public final class Okmeta extends JavaPlugin {
+import java.util.HashMap;
+
+/*
+* Main class of the entire core.
+*/
+public abstract class Okmeta extends JavaPlugin {
+
+    /*
+    * This gets called when server starts.
+    */
+    public abstract void enable();
+
+    /*
+    * This gets called when server stops
+    */
+    public abstract void disable();
+
+    private final HashMap<Player, PlayerMenuUtility> playerMenuUtilityMap = new HashMap<>();
 
     @Override
     public void onEnable() {
-        Message.of("&e[&eOkmeta&e]&e: &eThe Core has started!").send(Bukkit.getConsoleSender());
+        registerListeners(new MenuListener());
+
+        enable();
+
+        Bukkit.getConsoleSender().sendMessage(ColorUtil.color("&e[&eOkmeta&e]&e: &eThe Core has started!"));
     }
 
     @Override
     public void onDisable() {
-        Message.of("&c[&cOkmeta&c]&c: &cThe Core has stopped!").send(Bukkit.getConsoleSender());
+        disable();
+
+        Bukkit.getConsoleSender().sendMessage(ColorUtil.color("&c[&cOkmeta&c]&c: &cThe Core has stopped!"));
+    }
+
+    public void registerListeners(@NotNull Listener... listeners){
+        PluginManager pm = Bukkit.getPluginManager();
+
+        for (Listener listener : listeners){
+            pm.registerEvents(listener, this);
+        }
     }
 }
