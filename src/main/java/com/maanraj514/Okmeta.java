@@ -1,17 +1,11 @@
 package com.maanraj514;
 
-import com.maanraj514.menu.MenuListener;
-import com.maanraj514.menu.PlayerMenuUtility;
 import com.maanraj514.utils.ColorUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
-
 /*
 * Main class of the entire core.
 */
@@ -27,12 +21,8 @@ public abstract class Okmeta extends JavaPlugin {
     */
     public abstract void disable();
 
-    private final HashMap<Player, PlayerMenuUtility> playerMenuUtilityMap = new HashMap<>();
-
     @Override
     public void onEnable() {
-        registerListeners(new MenuListener());
-
         enable();
 
         Bukkit.getConsoleSender().sendMessage(ColorUtil.color("&e[&eOkmeta&e]&e: &eThe Core has started!"));
