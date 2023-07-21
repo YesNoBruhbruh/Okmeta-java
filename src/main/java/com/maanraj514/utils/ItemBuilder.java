@@ -1,7 +1,6 @@
-package com.maanraj514.object;
+package com.maanraj514.utils;
 
 import com.google.common.collect.Lists;
-import com.maanraj514.utils.ColorUtil;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
