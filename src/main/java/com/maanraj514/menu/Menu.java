@@ -11,9 +11,12 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class Menu implements InventoryHolder {
 
-    //Protected values that can be accessed in the menus
+    // Protected values that can be accessed in the menus
+    // The playerMenuUtility in the menu.
     protected PlayerMenuUtility playerMenuUtility;
+    // Player from playerMenuUtility.
     protected Player player;
+    // The Inventory used in the menu.
     protected Inventory inventory;
 
     public Menu(PlayerMenuUtility playerMenuUtility) {
@@ -21,16 +24,39 @@ public abstract class Menu implements InventoryHolder {
         this.player = playerMenuUtility.getOwner();
     }
 
+    /**
+     * @return Menu name.
+     */
     public abstract String getMenuName();
 
+    /**
+     * @return Inventory slots.
+     */
     public abstract int getSlots();
 
+    /**
+     * @return True or false for cancelling clicks.
+     */
     public abstract boolean cancelAllClicks();
 
-    public abstract void handleMenu(InventoryClickEvent e);
+    /**
+     * Handles the inventory click event.
+     *
+     * @param event The event for InventoryClicking.
+     */
+    public abstract void handleMenu(InventoryClickEvent event);
 
+    /**
+     * Set the menu items.
+     */
     public abstract void setMenuItems();
 
+    /**
+     * Creates the inventory and sets
+     * the items, sets the player
+     * to the playerMenuUtility, and
+     * opens the inventory.
+     */
     public void open() {
         inventory = Bukkit.createInventory(this, getSlots(), getMenuName());
 
@@ -42,10 +68,16 @@ public abstract class Menu implements InventoryHolder {
         playerMenuUtility.pushMenu(this);
     }
 
+    /**
+     * Opens the previous menu the player was on.
+     */
     public void back() {
         MenuManager.openMenu(playerMenuUtility.lastMenu().getClass(), playerMenuUtility.getOwner());
     }
 
+    /**
+     * Reloads the items.
+     */
     protected void reloadItems() {
         for (int i = 0; i < inventory.getSize(); i++) {
             inventory.setItem(i, null);
@@ -53,6 +85,9 @@ public abstract class Menu implements InventoryHolder {
         setMenuItems();
     }
 
+    /**
+     * Reloads the inventory.
+     */
     protected void reload() {
         player.closeInventory();
         MenuManager.openMenu(this.getClass(), player);
@@ -64,17 +99,26 @@ public abstract class Menu implements InventoryHolder {
         return inventory;
     }
 
-    public void setFillerGlass() {
-        ItemStack fillerGlass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+    /**
+     * Sets the default filler item
+     * (GRAY_STAINED_GLASS_PANE).
+     */
+    public void setFillerItem() {
+        ItemStack fillerItem = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
 
         for (int i = 0; i < getSlots(); i++) {
             if (inventory.getItem(i) == null) {
-                inventory.setItem(i, fillerGlass);
+                inventory.setItem(i, fillerItem);
             }
         }
     }
 
-    public void setFillerGlass(ItemStack itemStack) {
+    /**
+     * Sets the filler item.
+     *
+     * @param itemStack the item for the filler item.
+     */
+    public void setFillerItem(ItemStack itemStack) {
         for (int i = 0; i < getSlots(); i++) {
             if (inventory.getItem(i) == null) {
                 inventory.setItem(i, itemStack);
