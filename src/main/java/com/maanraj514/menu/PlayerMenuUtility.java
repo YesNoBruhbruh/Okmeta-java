@@ -4,6 +4,10 @@ import org.bukkit.entity.Player;
 
 import java.util.Stack;
 
+/**
+ * This class is used for easy access to players
+ * who open the menus.
+ */
 public class PlayerMenuUtility {
 
     private Player owner;

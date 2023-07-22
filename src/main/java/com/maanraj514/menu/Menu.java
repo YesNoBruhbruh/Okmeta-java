@@ -9,6 +9,10 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * This is the menu class
+ * subclasses extend from.
+ */
 public abstract class Menu implements InventoryHolder {
 
     // Protected values that can be accessed in the menus
