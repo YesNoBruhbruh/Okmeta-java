@@ -5,6 +5,9 @@ import org.bukkit.entity.Player;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
+/**
+ * This class handles opening menus and playerMenuUtility.
+ */
 public class MenuManager {
 
     private static final HashMap<Player, PlayerMenuUtility> playerMenuUtilityMap = new HashMap<>();;

@@ -33,7 +33,7 @@ public class MessageUtil {
     }
 
     /**
-     * Send an action bar to the player.
+     * Send an action bar to the players.
      *
      * @param message the message in the action bar
      * @param players the players to send it to
@@ -42,6 +42,16 @@ public class MessageUtil {
         for (Player player : players){
             player.sendActionBar(Component.text(message));
         }
+    }
+
+    /**
+     * Send an action bar to the player.
+     *
+     * @param message the message in the action bar
+     * @param player the player to send it to
+     */
+    public static void sendActionbar(@NotNull String message, @NotNull Player player){
+        player.sendActionBar(Component.text(message));
     }
 
     /**

@@ -6,6 +6,10 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
+/**
+ * This class extends Menu and adds more features
+ * to make it a paginatedMenu.
+ */
 public abstract class PaginatedMenu extends Menu {
 
     //The items being paginated
