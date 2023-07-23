@@ -5,6 +5,8 @@ import com.maanraj514.utils.ColorUtil;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -75,7 +77,7 @@ public class ItemBuilder {
      * Sets the name of the item.
      *
      * @param name the name of the item.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder setName(@NotNull String name){
@@ -88,7 +90,7 @@ public class ItemBuilder {
      * List<String>.
      *
      * @param lines the lore.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder setLore(@NotNull List<String> lines){
@@ -106,7 +108,7 @@ public class ItemBuilder {
      * String[].
      *
      * @param lines the lore.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder setLore(@NotNull String... lines){
@@ -124,7 +126,7 @@ public class ItemBuilder {
      * of lore.
      *
      * @param line the lore line.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder addLoreLine(@NotNull String line){
@@ -147,7 +149,7 @@ public class ItemBuilder {
      * String[]
      *
      * @param lines lore lines.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder addLoreLines(@NotNull String... lines){
@@ -173,7 +175,7 @@ public class ItemBuilder {
      * List<String>
      *
      * @param lines lore lines.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder addLoreLines(@NotNull List<String> lines){
@@ -198,7 +200,7 @@ public class ItemBuilder {
      * It requires a function.
      *
      * @param function replace the lore.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder replaceLore(@NotNull UnaryOperator<String> function) {
@@ -216,7 +218,7 @@ public class ItemBuilder {
      *
      * @param placeholder the placeholder.
      * @param replacement the replacement.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder replaceLore(@NotNull String placeholder, @NotNull String replacement) {
@@ -229,7 +231,7 @@ public class ItemBuilder {
      * @param enchantment enchantment.
      * @param level level.
      * @param ignoreMinecraftLimit if it ignore's minecraft's enchantment limit.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder addEnchant(@NotNull Enchantment enchantment, int level, boolean ignoreMinecraftLimit){
@@ -241,7 +243,7 @@ public class ItemBuilder {
      * Removes the specified enchant.
      *
      * @param enchantment enchantment.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder removeEnchant(@NotNull Enchantment enchantment){
@@ -253,7 +255,7 @@ public class ItemBuilder {
      * Adds the itemflags to the item.
      *
      * @param itemFlags itemflags.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder addItemFlags(@NotNull ItemFlag... itemFlags){
@@ -265,7 +267,7 @@ public class ItemBuilder {
      * Removes the itemflags to the item.
      *
      * @param itemFlags itemflags.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder removeItemFlags(@NotNull ItemFlag... itemFlags){
@@ -278,7 +280,7 @@ public class ItemBuilder {
      * OfflinePlayer.
      *
      * @param offlinePlayer the offlinePlayer.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder setSkullOwner(@NotNull OfflinePlayer offlinePlayer){
@@ -292,7 +294,7 @@ public class ItemBuilder {
      * PlayerProfile.
      *
      * @param playerProfile the playerProfile.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder setSkullOwner(@NotNull PlayerProfile playerProfile){
@@ -305,7 +307,7 @@ public class ItemBuilder {
      * Sets customModelData on the item.
      *
      * @param modelData modelData.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder setCustomModelData(int modelData){
@@ -317,11 +319,49 @@ public class ItemBuilder {
      * Applies persistentData on the item.
      *
      * @param function applyPersistentData.
-     * @return this
+     * @return this.
      */
     @NotNull
     public ItemBuilder applyPersistentData(@NotNull Consumer<PersistentDataContainer> function) {
         function.accept(this.meta.getPersistentDataContainer());
+        return this;
+    }
+
+    /**
+     * Add an attribute modifier to the item.
+     *
+     * @param attribute The attribute to add the modifier to.
+     * @param modifier The modifier to add.
+     * @return this.
+     */
+    @NotNull
+    public ItemBuilder addAttributeModifier(@NotNull Attribute attribute, @NotNull AttributeModifier modifier) {
+        this.meta.addAttributeModifier(attribute, modifier);
+        return this;
+    }
+
+    /**
+     * Remove an attribute modifier from the item.
+     *
+     * @param attribute The attribute to remove the modifier from.
+     * @return this.
+     */
+    @NotNull
+    public ItemBuilder removeAttributeModifier(@NotNull Attribute attribute) {
+        this.meta.removeAttributeModifier(attribute);
+        return this;
+    }
+
+    /**
+     * Remove an attribute modifier from the item.
+     *
+     * @param attribute The attribute to remove the modifier from.
+     * @param modifier The modifier to remove.
+     * @return this.
+     */
+    @NotNull
+    public ItemBuilder removeAttributeModifier(@NotNull Attribute attribute, @NotNull AttributeModifier modifier) {
+        this.meta.removeAttributeModifier(attribute, modifier);
         return this;
     }
 
