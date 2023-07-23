@@ -1,6 +1,7 @@
-package com.maanraj514.utils;
+package com.maanraj514.builder;
 
 import com.google.common.collect.Lists;
+import com.maanraj514.utils.ColorUtil;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -28,7 +29,7 @@ public class ItemBuilder {
     /*
     * This is the item.
     */
-    private ItemStack item;
+    private final ItemStack item;
     /*
     * This is the item meta.
     */
@@ -38,7 +39,7 @@ public class ItemBuilder {
      * Creates a new instance of
      * Itembuilder with ItemStack.
      *
-     * @param item
+     * @param item the item.
      */
     public ItemBuilder(ItemStack item){
         this.item = item;
@@ -52,7 +53,7 @@ public class ItemBuilder {
      * Creates a new instance of
      * ItemBuilder with Material
      *
-     * @param material
+     * @param material the material of the item.
      */
     public ItemBuilder(Material material){
         this(new ItemStack(material));
@@ -63,7 +64,7 @@ public class ItemBuilder {
      * ItemBuilder and pastes it into
      * this one.
      *
-     * @param itemBuilder
+     * @param itemBuilder the itembuilder replacing this one.
      */
     public ItemBuilder(ItemBuilder itemBuilder){
         this.item = itemBuilder.item;
@@ -73,7 +74,7 @@ public class ItemBuilder {
     /**
      * Sets the name of the item.
      *
-     * @param name
+     * @param name the name of the item.
      * @return this
      */
     @NotNull
@@ -86,7 +87,7 @@ public class ItemBuilder {
      * Sets lore.
      * List<String>.
      *
-     * @param lines
+     * @param lines the lore.
      * @return this
      */
     @NotNull
@@ -104,7 +105,7 @@ public class ItemBuilder {
      * Sets lore.
      * String[].
      *
-     * @param lines
+     * @param lines the lore.
      * @return this
      */
     @NotNull
@@ -122,7 +123,7 @@ public class ItemBuilder {
      * Adds a single line
      * of lore.
      *
-     * @param line
+     * @param line the lore line.
      * @return this
      */
     @NotNull
@@ -145,7 +146,7 @@ public class ItemBuilder {
      * of lore.
      * String[]
      *
-     * @param lines
+     * @param lines lore lines.
      * @return this
      */
     @NotNull
@@ -171,7 +172,7 @@ public class ItemBuilder {
      * of lore.
      * List<String>
      *
-     * @param lines
+     * @param lines lore lines.
      * @return this
      */
     @NotNull
@@ -196,7 +197,7 @@ public class ItemBuilder {
      * Replaces the lore.
      * It requires a function.
      *
-     * @param function
+     * @param function replace the lore.
      * @return this
      */
     @NotNull
@@ -213,8 +214,8 @@ public class ItemBuilder {
     /**
      * Uses the other replaceLore().
      *
-     * @param placeholder
-     * @param replacement
+     * @param placeholder the placeholder.
+     * @param replacement the replacement.
      * @return this
      */
     @NotNull
@@ -225,9 +226,9 @@ public class ItemBuilder {
     /**
      * Adds the specified enchant.
      *
-     * @param enchantment
-     * @param level
-     * @param ignoreMinecraftLimit
+     * @param enchantment enchantment.
+     * @param level level.
+     * @param ignoreMinecraftLimit if it ignore's minecraft's enchantment limit.
      * @return this
      */
     @NotNull
@@ -239,7 +240,7 @@ public class ItemBuilder {
     /**
      * Removes the specified enchant.
      *
-     * @param enchantment
+     * @param enchantment enchantment.
      * @return this
      */
     @NotNull
@@ -251,7 +252,7 @@ public class ItemBuilder {
     /**
      * Adds the itemflags to the item.
      *
-     * @param itemFlags
+     * @param itemFlags itemflags.
      * @return this
      */
     @NotNull
@@ -263,7 +264,7 @@ public class ItemBuilder {
     /**
      * Removes the itemflags to the item.
      *
-     * @param itemFlags
+     * @param itemFlags itemflags.
      * @return this
      */
     @NotNull
@@ -276,7 +277,7 @@ public class ItemBuilder {
      * Sets the skull owner.
      * OfflinePlayer.
      *
-     * @param offlinePlayer
+     * @param offlinePlayer the offlinePlayer.
      * @return this
      */
     @NotNull
@@ -290,7 +291,7 @@ public class ItemBuilder {
      * Sets the skull owner.
      * PlayerProfile.
      *
-     * @param playerProfile
+     * @param playerProfile the playerProfile.
      * @return this
      */
     @NotNull
@@ -303,7 +304,7 @@ public class ItemBuilder {
     /**
      * Sets customModelData on the item.
      *
-     * @param modelData
+     * @param modelData modelData.
      * @return this
      */
     @NotNull
@@ -315,7 +316,7 @@ public class ItemBuilder {
     /**
      * Applies persistentData on the item.
      *
-     * @param function
+     * @param function applyPersistentData.
      * @return this
      */
     @NotNull
@@ -328,7 +329,7 @@ public class ItemBuilder {
      * Sets the color on
      * leather armor.
      *
-     * @param color
+     * @param color color.
      * @return this
      */
     @NotNull
@@ -342,12 +343,34 @@ public class ItemBuilder {
      * Sets if the item would be
      * unbreakable or not.
      *
-     * @param unbreakable
+     * @param unbreakable if true, unbreakable. If false, not unbreakable.
      * @return this
      */
     @NotNull
     public ItemBuilder setUnbreakable(boolean unbreakable){
         this.meta.setUnbreakable(unbreakable);
+        return this;
+    }
+
+    /**
+     * Makes the item glowing.
+     *
+     * @param glowing true if it should glow, false if not.
+     * @return this
+     */
+    @NotNull
+    public ItemBuilder setGlowing(boolean glowing){
+        if (glowing){
+            addEnchant(Enchantment.LUCK, 1,  false);
+            addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }else{
+            if (this.item.hasItemFlag(ItemFlag.HIDE_ENCHANTS)){
+                this.item.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
+            }
+            if (this.item.getEnchantments().containsKey(Enchantment.LUCK)){
+                this.item.removeEnchantment(Enchantment.LUCK);
+            }
+        }
         return this;
     }
 

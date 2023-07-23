@@ -1,6 +1,6 @@
 package com.maanraj514.menu;
 
-import com.maanraj514.utils.ItemBuilder;
+import com.maanraj514.builder.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
