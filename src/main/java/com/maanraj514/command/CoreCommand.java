@@ -11,6 +11,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This is the class for CoreCommand.
+ */
 public class CoreCommand extends Command {
 
     /*

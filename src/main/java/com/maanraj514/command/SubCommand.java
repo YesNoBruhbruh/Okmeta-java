@@ -5,6 +5,9 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
+/**
+ * This is the parent class of subCommands.
+ */
 public abstract class SubCommand {
 
     /*
