@@ -34,4 +34,4 @@ Okmeta is licensed under the 'What is a License' License. See the `LICENSE` file
 
 ## Contact
 
-If you have any questions or issues with Okmeta, please contact YeBoieee#0 over at discord.
+If you have any questions or issues with Okmeta, please contact Yeboieee#0 over at discord.
