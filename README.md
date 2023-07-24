@@ -10,10 +10,8 @@ this is going to be the core plugin for YesNoBruhbruh (maanraj514)!
 - NumberUtil.java
 - TimeUtil.java
 - ItemBuilder.java
-- GamePlayer.java
 - ItemBuilder.java
 - Message.java
-- Pos.java
 - Stats.java
 
 ## Installation
