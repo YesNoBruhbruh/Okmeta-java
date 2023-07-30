@@ -17,6 +17,8 @@ import org.jetbrains.annotations.NotNull;
 */
 public abstract class Okmeta extends JavaPlugin {
 
+    private static Okmeta instance;
+
     /*
     * This gets called when server starts.
     */
@@ -29,6 +31,8 @@ public abstract class Okmeta extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        instance = this;
+
         registerListeners(new MenuListener());
 
         enable();
@@ -49,5 +53,9 @@ public abstract class Okmeta extends JavaPlugin {
         for (Listener listener : listeners){
             pm.registerEvents(listener, this);
         }
+    }
+
+    public static Okmeta getInstance(){
+        return instance;
     }
 }

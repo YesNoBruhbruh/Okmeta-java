@@ -4,76 +4,62 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Used for sending certain messages such as sendTitle() and sendActionBar().
  */
 public class MessageUtil {
-
-    /**
-     * Send a title to the player.
-     *
-     * @param title title to send
-     * @param subTitle subtitle to send
-     * @param fadeIn how long to fade in
-     * @param stay how long it stays
-     * @param fadeOut how long it fades out
-     * @param players the players to send it to
-     */
-    public static void sendTitle(@NotNull String title, @NotNull String subTitle, long fadeIn, long stay, long fadeOut, @NotNull Player... players){
+    public static void sendTitle(String title, String subTitle, long fadeIn, long stay, long fadeOut, Player... players) {
         Title.Times times = Title.Times.times(Duration.ofMillis(fadeIn), Duration.ofMillis(stay), Duration.ofMillis(fadeOut));
         Title title1 = Title.title(Component.text(title), Component.text(subTitle), times);
 
-        for (Player player : players){
+        for (Player player : players) {
             player.showTitle(title1);
         }
     }
 
-    /**
-     * Send an action bar to the players.
-     *
-     * @param message the message in the action bar
-     * @param players the players to send it to
-     */
-    public static void sendActionbar(@NotNull String message, @NotNull Player... players){
-        for (Player player : players){
+    public static void sendActionbar(String message, Player... players) {
+        for (Player player : players) {
             player.sendActionBar(Component.text(message));
         }
     }
 
-    /**
-     * Send an action bar to the player.
-     *
-     * @param message the message in the action bar
-     * @param player the player to send it to
-     */
-    public static void sendActionbar(@NotNull String message, @NotNull Player player){
+    public static void sendActionbar(String message, Player player) {
         player.sendActionBar(Component.text(message));
     }
 
-    /**
-     * Broadcast a message to
-     * the entire server.
-     *
-     * @param message the message broadcasted.
-     */
-    public static void broadcast(@NotNull String message){
+    public static void sendMessageWithLines(String message, Player player) {
+        player.sendMessage("--------------------");
+        player.sendMessage(ColorUtil.translate(message));
+        player.sendMessage("--------------------");
+    }
+
+    public static void sendMessageWithLines(String message, Player player, String line1, String line2) {
+        player.sendMessage(ColorUtil.translate(line1));
+        player.sendMessage(ColorUtil.translate(message));
+        player.sendMessage(ColorUtil.translate(line2));
+    }
+
+    public static void broadcast(String message) {
         Bukkit.broadcastMessage(ColorUtil.translate(message));
     }
 
-    /**
-     * Broadcast a message to
-     * multiple players.
-     *
-     * @param message the message broadcasted to the players.
-     * @param players the players who receive the broadcast.
-     */
-    public static void broadcast(@NotNull String message, @NotNull Player... players){
-        for (Player player : players){
+    public static void broadcast(String message, Player... players) {
+        for (Player player : players) {
             player.sendMessage(ColorUtil.translate(message));
+        }
+    }
+
+    public static void broadcast(String message, List<UUID> players) {
+        for (UUID player : players) {
+            Player onlinePlayer = Bukkit.getPlayer(player);
+            if (onlinePlayer != null) {
+                onlinePlayer.sendMessage(ColorUtil.translate(message));
+            }
         }
     }
 }
