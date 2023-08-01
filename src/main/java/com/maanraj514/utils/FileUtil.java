@@ -14,11 +14,6 @@ import java.util.logging.Logger;
  */
 public class FileUtil {
 
-    /*
-    * Logger for logging messages.
-    */
-    private final Logger logger = Bukkit.getLogger();
-
     /**
      * Loads the file specified.
      * Returns the file loaded.
@@ -27,18 +22,15 @@ public class FileUtil {
      * @param resource the file to be loaded
      * @return the file loaded
      */
-    public File loadFile(@NotNull JavaPlugin plugin, @NotNull String resource) {
+    public static File loadFile(@NotNull JavaPlugin plugin, @NotNull String resource) {
         File folder = plugin.getDataFolder();
-        if (!folder.exists())
-            if (!folder.mkdir()){
-                logger.severe("FAILED TO MAKE DIRECTORY " + folder.getName());
-            }
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
         File resourceFile = new File(folder, resource);
         try {
             if (!resourceFile.exists()) {
-                if (!resourceFile.createNewFile()){
-                    logger.severe("FAILED TO CREATE A NEW FILE " + resourceFile.getName());
-                }
+                resourceFile.createNewFile();
                 try (InputStream in = plugin.getResource(resource);
                      OutputStream out = Files.newOutputStream(resourceFile.toPath())) {
                     if (in != null){
@@ -58,12 +50,10 @@ public class FileUtil {
      * @param source the file to be copied
      * @param destination the destination the file will be pasted in
      */
-    public void copy(@NotNull File source, @NotNull File destination) throws IOException {
+    public static void copy(@NotNull File source, @NotNull File destination) throws IOException {
         if (source.isDirectory()) {
             if (!destination.exists()) {
-                if (!destination.mkdir()){
-                    logger.severe("FAILED TO MAKE DIRECTORY " + destination.getName());
-                }
+                destination.mkdir();
             }
 
             String[] files = source.list();
@@ -93,7 +83,7 @@ public class FileUtil {
      *
      * @param file the file to be deleted
      */
-    public void delete(@NotNull File file) {
+    public static void delete(@NotNull File file) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
             if (files == null) return;
@@ -101,9 +91,6 @@ public class FileUtil {
                 delete(child);
             }
         }
-
-        if (!file.delete()){
-            logger.severe("FAILED TO DELETE FILE " + file.getName());
-        }
+        file.delete();
     }
 }
