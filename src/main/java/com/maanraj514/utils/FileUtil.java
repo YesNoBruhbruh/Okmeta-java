@@ -1,13 +1,11 @@
 package com.maanraj514.utils;
 
 import com.google.common.io.ByteStreams;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.util.logging.Logger;
 
 /**
  * This class handles the files, load, copy etc.
