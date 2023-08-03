@@ -59,37 +59,38 @@ public class TimeUtil {
                 builder.append(c);
             } else {
                 switch (c) {
-                    case 's' -> {
+                    case 's':
                         if (builder.length() != 0) {
                             seconds += Integer.parseInt(builder.toString());
                             builder = new StringBuilder();
                         }
-                    }
-                    case 'm' -> {
+                        break;
+                    case 'm':
                         if (builder.length() != 0) {
                             minutes += Integer.parseInt(builder.toString());
                             builder = new StringBuilder();
                         }
-                    }
-                    case 'h' -> {
+                        break;
+                    case 'h':
                         if (builder.length() != 0) {
                             hours += Integer.parseInt(builder.toString());
                             builder = new StringBuilder();
                         }
-                    }
-                    case 'd' -> {
+                        break;
+                    case 'd':
                         if (builder.length() != 0) {
                             days += Integer.parseInt(builder.toString());
                             builder = new StringBuilder();
                         }
-                    }
-                    case 'w' -> {
+                        break;
+                    case 'w':
                         if (builder.length() != 0) {
                             weeks += Integer.parseInt(builder.toString());
                             builder = new StringBuilder();
                         }
-                    }
-                    default -> throw new IllegalArgumentException("Not a valid duration format.");
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Not a valid duration format.");
                 }
             }
         }
