@@ -84,7 +84,7 @@ public class LocationUtil {
      * @param location2 the second location.
      * @return all the locations in the invisible cuboid.
      */
-    public List<Location> locationsFromTwoPoints(Location location1, Location location2) {
+    public static List<Location> locationsFromTwoPoints(Location location1, Location location2) {
         List<Location> locations = new ArrayList<>();
 
         int topBlockX = (Math.max(location1.getBlockX(), location2.getBlockX()));
@@ -105,5 +105,13 @@ public class LocationUtil {
         }
 
         return locations;
+    }
+
+    public static boolean coordinatesMatch(Location location1, Location location2){
+        if (location1 == null || location2 == null) return false;
+
+        return location1.getX() == location2.getX() &&
+                location1.getY() == location2.getY() &&
+                location1.getZ() == location2.getZ();
     }
 }
