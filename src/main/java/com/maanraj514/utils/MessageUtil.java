@@ -3,11 +3,13 @@ package com.maanraj514.utils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Used for sending certain messages such as sendTitle() and sendActionBar().
@@ -61,5 +63,40 @@ public class MessageUtil {
                 onlinePlayer.sendMessage(ColorUtil.translate(message));
             }
         }
+    }
+
+    public static String rainbow(String message){
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < message.length(); i++){
+            char c = message.charAt(i);
+            sb.append(getRandomColor()).append(c);
+        }
+
+        return sb.toString();
+    }
+
+    public static ChatColor getRandomColor(){
+        ChatColor[] chatColors = new ChatColor[]{
+                ChatColor.AQUA,
+                ChatColor.BLACK,
+                ChatColor.BLUE,
+                ChatColor.DARK_AQUA,
+                ChatColor.DARK_BLUE,
+                ChatColor.DARK_GRAY,
+                ChatColor.DARK_GREEN,
+                ChatColor.DARK_PURPLE,
+                ChatColor.DARK_RED,
+                ChatColor.GOLD,
+                ChatColor.GRAY,
+                ChatColor.GREEN,
+                ChatColor.LIGHT_PURPLE,
+                ChatColor.RED,
+                ChatColor.WHITE,
+                ChatColor.YELLOW,
+        };
+
+        int randomChatColor = ThreadLocalRandom.current().nextInt(chatColors.length);
+        return chatColors[randomChatColor];
     }
 }
