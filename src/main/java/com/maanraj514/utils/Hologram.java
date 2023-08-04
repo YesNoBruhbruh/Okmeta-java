@@ -24,4 +24,12 @@ public class Hologram {
     public void destroy(){
         this.textDisplay.remove();
     }
+
+    public TextDisplay getTextDisplay() {
+        return textDisplay;
+    }
+
+    public String getText() {
+        return text;
+    }
 }
