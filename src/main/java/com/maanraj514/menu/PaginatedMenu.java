@@ -3,6 +3,7 @@ package com.maanraj514.menu;
 import com.maanraj514.utils.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * to make it a paginatedMenu.
  */
 public abstract class PaginatedMenu extends Menu {
+    protected JavaPlugin plugin;
 
     //The items being paginated
     protected List<Object> data;
@@ -23,8 +25,8 @@ public abstract class PaginatedMenu extends Menu {
     //that the loop is on
     protected int index = 0;
 
-    public PaginatedMenu(PlayerMenuUtility playerMenuUtility) {
-        super(playerMenuUtility);
+    public PaginatedMenu(PlayerMenuUtility playerMenuUtility, JavaPlugin plugin) {
+        super(playerMenuUtility, plugin);
     }
 
     /**
