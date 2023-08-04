@@ -4,6 +4,7 @@ import com.maanraj514.Okmeta;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.*;
@@ -40,9 +41,9 @@ public class Party {
         addPlayer(player, partyRank);
     }
 
-    public void removePlayer(Player player, long time) {
+    public void removePlayer(Player player, long time, JavaPlugin plugin) {
         removeTasks.put(player.getUniqueId(), Bukkit.getScheduler().runTaskLater(
-                Okmeta.getInstance(),
+                plugin,
                 () -> removePlayer(player),
                 time)
         );
@@ -54,9 +55,9 @@ public class Party {
         offlinePlayers.remove(offlinePlayer.getUniqueId());
     }
 
-    public void invite(Player invited, long timeToExpire) {
+    public void invite(Player invited, long timeToExpire, JavaPlugin plugin) {
         inviteTasks.put(invited.getUniqueId(), Bukkit.getScheduler().runTaskLater(
-                Okmeta.getInstance(),
+                plugin,
                 () -> inviteTasks.remove(invited.getUniqueId()),
                 timeToExpire)
         );
