@@ -130,4 +130,12 @@ public class Party {
     public boolean hasPlayer(Player player) {
         return players.containsKey(player.getUniqueId());
     }
+
+    public Map<UUID, PartyRank> getPlayers() {
+        return players;
+    }
+
+    public List<UUID> getOnlinePlayers() {
+        return onlinePlayers;
+    }
 }
