@@ -12,7 +12,6 @@ import java.util.List;
  * to make it a paginatedMenu.
  */
 public abstract class PaginatedMenu extends Menu {
-    protected JavaPlugin plugin;
 
     //The items being paginated
     protected List<Object> data;
@@ -25,8 +24,8 @@ public abstract class PaginatedMenu extends Menu {
     //that the loop is on
     protected int index = 0;
 
-    public PaginatedMenu(PlayerMenuUtility playerMenuUtility, JavaPlugin plugin) {
-        super(playerMenuUtility, plugin);
+    public PaginatedMenu(PlayerMenuUtility playerMenuUtility) {
+        super(playerMenuUtility);
     }
 
     /**
