@@ -79,7 +79,6 @@ public class MessageUtil {
     public static ChatColor getRandomColor(){
         ChatColor[] chatColors = new ChatColor[]{
                 ChatColor.AQUA,
-                ChatColor.BLACK,
                 ChatColor.BLUE,
                 ChatColor.DARK_AQUA,
                 ChatColor.DARK_BLUE,
