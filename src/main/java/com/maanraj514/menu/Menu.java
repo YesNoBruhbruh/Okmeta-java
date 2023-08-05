@@ -1,5 +1,6 @@
 package com.maanraj514.menu;
 
+import com.maanraj514.Okmeta;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
  * subclasses extend from.
  */
 public abstract class Menu implements InventoryHolder {
-    protected JavaPlugin plugin;
+    protected Okmeta plugin;
 
     // Protected values that can be accessed in the menus
     // The playerMenuUtility in the menu.
@@ -25,7 +26,7 @@ public abstract class Menu implements InventoryHolder {
     // The Inventory used in the menu.
     protected Inventory inventory;
 
-    public Menu(PlayerMenuUtility playerMenuUtility, JavaPlugin plugin) {
+    public Menu(PlayerMenuUtility playerMenuUtility, Okmeta plugin) {
         this.plugin = plugin;
         this.playerMenuUtility = playerMenuUtility;
         this.player = playerMenuUtility.getOwner();
