@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
  * subclasses extend from.
  */
 public abstract class Menu implements InventoryHolder {
+    protected JavaPlugin plugin;
 
     // Protected values that can be accessed in the menus
     // The playerMenuUtility in the menu.
@@ -24,7 +25,8 @@ public abstract class Menu implements InventoryHolder {
     // The Inventory used in the menu.
     protected Inventory inventory;
 
-    public Menu(PlayerMenuUtility playerMenuUtility) {
+    public Menu(PlayerMenuUtility playerMenuUtility, JavaPlugin plugin) {
+        this.plugin = plugin;
         this.playerMenuUtility = playerMenuUtility;
         this.player = playerMenuUtility.getOwner();
     }
