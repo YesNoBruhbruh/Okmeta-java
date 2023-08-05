@@ -338,6 +338,18 @@ public class ItemBuilder {
         return this;
     }
 
+    public ItemBuilder setGlowing(boolean glowing){
+        if (glowing){
+            this.meta.addEnchant(Enchantment.LUCK, 1, true);
+            this.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }else{
+            if (this.meta.getEnchants().containsKey(Enchantment.LUCK)){
+                this.meta.removeEnchant(Enchantment.LUCK);
+            }
+        }
+        return this;
+    }
+
     /**
      * Sets if the item would be
      * unbreakable or not.
