@@ -1,5 +1,6 @@
 package com.maanraj514.menu;
 
+import com.maanraj514.Okmeta;
 import com.maanraj514.utils.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -24,8 +25,8 @@ public abstract class PaginatedMenu extends Menu {
     //that the loop is on
     protected int index = 0;
 
-    public PaginatedMenu(PlayerMenuUtility playerMenuUtility) {
-        super(playerMenuUtility);
+    public PaginatedMenu(PlayerMenuUtility playerMenuUtility, Okmeta okmeta) {
+        super(playerMenuUtility, okmeta);
     }
 
     /**
