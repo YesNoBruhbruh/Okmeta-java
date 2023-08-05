@@ -6,6 +6,7 @@ import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import java.util.List;
  * This class is used for ease of use of locations.
  */
 public class LocationUtil {
+
+    private static final DecimalFormat decimalFormat = new DecimalFormat("#.#");
 
     /**
      * Converts a Location to a String.
@@ -24,11 +27,11 @@ public class LocationUtil {
     public static String locationToString(@NotNull Location location, boolean includeExtra){
 
         String world = location.getWorld().getName();
-        double x = location.getX();
-        double y = location.getY();
-        double z = location.getZ();
-        float yaw = location.getYaw();
-        float pitch = location.getPitch();
+        double x = Double.parseDouble(decimalFormat.format(location.getX()));
+        double y = Double.parseDouble(decimalFormat.format(location.getY()));
+        double z = Double.parseDouble(decimalFormat.format(location.getZ()));
+        float yaw = Float.parseFloat(decimalFormat.format(location.getYaw()));
+        float pitch = Float.parseFloat(decimalFormat.format(location.getPitch()));
 
         return (includeExtra ? world + ":" + x + ":" + y + ":" + z + ":" + yaw + ":" + pitch : world + ":" + x + ":" + y + ":" + z);
     }
