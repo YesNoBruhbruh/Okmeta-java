@@ -13,9 +13,11 @@ public class PartyManager {
         this.parties = new HashMap<>();
     }
 
-    public void createParty(Player player) {
+    public Party createParty(Player player) {
         UUID partyUUID = UUID.randomUUID();
-        parties.put(partyUUID, new Party(partyUUID, player.getUniqueId()));
+        Party party = new Party(partyUUID, player.getUniqueId());
+        parties.put(partyUUID, party);
+        return party;
     }
 
     public Party getParty(UUID partyUUID) {

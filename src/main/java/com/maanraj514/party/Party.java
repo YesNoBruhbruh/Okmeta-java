@@ -53,6 +53,10 @@ public class Party {
         players.remove(offlinePlayer.getUniqueId());
         onlinePlayers.remove(offlinePlayer.getUniqueId());
         offlinePlayers.remove(offlinePlayer.getUniqueId());
+
+        if (this.players.isEmpty()){
+            this.disband();
+        }
     }
 
     public void invite(Player invited, long timeToExpire, JavaPlugin plugin) {
