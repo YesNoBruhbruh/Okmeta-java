@@ -143,4 +143,24 @@ public class Party {
     public List<UUID> getOnlinePlayers() {
         return onlinePlayers;
     }
+
+    public UUID getPartyUUID() {
+        return partyUUID;
+    }
+
+    public UUID getOwner() {
+        return owner;
+    }
+
+    public List<UUID> getOfflinePlayers() {
+        return offlinePlayers;
+    }
+
+    public Map<UUID, BukkitTask> getInviteTasks() {
+        return inviteTasks;
+    }
+
+    public Map<UUID, BukkitTask> getRemoveTasks() {
+        return removeTasks;
+    }
 }
