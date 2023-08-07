@@ -1,5 +1,6 @@
 package com.maanraj514.party;
 
+import com.maanraj514.party.ranks.Member;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -7,7 +8,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class PartyManager {
-    private Map<UUID, Party> parties;
+    private final Map<UUID, Party> parties;
 
     public PartyManager() {
         this.parties = new HashMap<>();
