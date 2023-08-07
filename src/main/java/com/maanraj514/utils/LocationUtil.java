@@ -1,8 +1,10 @@
 package com.maanraj514.utils;
 
+import com.maanraj514.model.Pos;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.util.NumberConversions;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,6 +33,42 @@ public class LocationUtil {
         float pitch = location.getPitch();
 
         return (includeExtra ? world + ":" + x + ":" + y + ":" + z + ":" + yaw + ":" + pitch : world + ":" + x + ":" + y + ":" + z);
+    }
+
+    public static Pos locationToPos(Location location){
+        double x = location.getX();
+        double y = location.getY();
+        double z = location.getZ();
+        float yaw = location.getYaw();
+        float pitch = location.getPitch();
+        return new Pos(x, y, z, yaw, pitch);
+    }
+
+    public static Location posToLocation(Pos pos, World world){
+        double x = pos.getX();
+        double y = pos.getY();
+        double z = pos.getZ();
+        float yaw = pos.getYaw();
+        float pitch = pos.getPitch();
+        Location location = new Location(world, x, y, z);
+        location.setYaw(yaw);
+        location.setPitch(pitch);
+        return location;
+    }
+
+    public static Pos stringToPos(String s) {
+        if (s == null || s.trim().equals("")) {
+            return null;
+        }
+
+        final String[] parts = s.split(":");
+        if (parts.length == 3) {
+            final double x = Double.parseDouble(parts[0]);
+            final double y = Double.parseDouble(parts[1]);
+            final double z = Double.parseDouble(parts[2]);
+            return new Pos(x, y, z);
+        }
+        return null;
     }
 
     /**
@@ -107,11 +145,43 @@ public class LocationUtil {
         return locations;
     }
 
+    public static List<Pos> posFromTwoPoints(Pos pos1, Pos pos2) {
+        List<Pos> posList = new ArrayList<>();
+
+        int topBlockX = (Math.max(doubleToInt(pos1.getX()), doubleToInt(pos2.getX())));
+        int bottomBlockX = (Math.min(doubleToInt(pos1.getX()), doubleToInt(pos2.getX())));
+
+        int topBlockY = (Math.max(doubleToInt(pos1.getY()), doubleToInt(pos2.getY())));
+        int bottomBlockY = (Math.min(doubleToInt(pos1.getY()), doubleToInt(pos2.getY())));
+
+        int topBlockZ = (Math.max(doubleToInt(pos1.getZ()), doubleToInt(pos2.getZ())));
+        int bottomBlockZ = (Math.min(doubleToInt(pos1.getZ()), doubleToInt(pos2.getZ())));
+
+        for (int x = bottomBlockX; x <= topBlockX; x++)
+        {
+            for (int z = bottomBlockZ; z <= topBlockZ; z++)
+            {
+                for (int y = bottomBlockY; y <= topBlockY; y++)
+                {
+
+                    // location of the blocks
+                    posList.add(new Pos(x, y, z));
+                }
+            }
+        }
+
+        return posList;
+    }
+
     public static boolean coordinatesMatch(Location location1, Location location2){
         if (location1 == null || location2 == null) return false;
 
         return location1.getX() == location2.getX() &&
                 location1.getY() == location2.getY() &&
                 location1.getZ() == location2.getZ();
+    }
+
+    public static int doubleToInt(double number){
+        return NumberConversions.floor(number);
     }
 }
