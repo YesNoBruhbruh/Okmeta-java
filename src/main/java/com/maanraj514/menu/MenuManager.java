@@ -19,7 +19,8 @@ public class MenuManager {
             Menu menu = menuClass.getDeclaredConstructor(PlayerMenuUtility.class, Okmeta.class).newInstance(getPlayerMenuUtility(player), Okmeta.getOkmeta());
             menu.open();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            Bukkit.getLogger().severe("FAILED TO OPEN MENU");
+            Bukkit.getLogger().severe("FAILED TO OPEN MENU ");
+            e.printStackTrace();
         }
     }
 
