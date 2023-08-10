@@ -181,6 +181,14 @@ public class LocationUtil {
                 location1.getZ() == location2.getZ();
     }
 
+    public static boolean coordinatesMatch(Pos pos1, Pos pos2){
+        if (pos1 == null || pos2 == null) return false;
+
+        return pos1.getX() == pos2.getX() &&
+                pos1.getY() == pos2.getY() &&
+                pos1.getZ() == pos2.getZ();
+    }
+
     public static int doubleToInt(double number){
         return NumberConversions.floor(number);
     }
